@@ -5608,6 +5608,33 @@ window.addEventListener("click", function(e) {
         </p>
     </div>
 </div>
+<script>
+// Elemente für das Versions-Fenster ansteuern
+const versionLink = document.getElementById('versionLink');
+const versionModal = document.getElementById('versionModal');
+const closeVersion = document.getElementById('closeVersion');
+
+// Fenster anzeigen, wenn man auf "Version 1.0" klickt
+if (versionLink && versionModal) {
+    versionLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Verhindert, dass die Seite nach oben springt
+        versionModal.style.display = 'block';
+    });
+}
+
+// Fenster schließen beim Klick auf das 'X'
+if (closeVersion && versionModal) {
+    closeVersion.addEventListener('click', function() {
+        versionModal.style.display = 'none';
+    });
+}
+
+// Fenster schließen beim Klick irgendwo außerhalb des weißen Kastens
+window.addEventListener('click', function(event) {
+    if (event.target === versionModal) {
+        versionModal.style.display = 'none';
+    }
+});
 </script>
 </body>
 </html>
