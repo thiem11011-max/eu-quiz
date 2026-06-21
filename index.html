@@ -1335,6 +1335,13 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
           <p>Der erste Fehler führt zum Game Over. Wie viele Fragen schaffst du in Folge?</p>
         </div>
       </div>
+      <div class="category-card" style="opacity: 0.35; cursor: not-allowed; filter: grayscale(0.6); pointer-events: none;">
+        <div class="category-num" style="background: linear-gradient(135deg, #4b5563, #1f2937);">👥</div>
+        <div class="category-details">
+          <h3>Multiplayer</h3>
+          <p>Kommt mit Version 3.0: Tritt live gegen deine Klasse an und nutze dein Smartphone als Controller!</p>
+        </div>
+      </div>
     </div>
     
     <button class="btn-main" style="margin-top:20px; border-color: rgba(255,255,255,0.15);" onclick="backToStart()">
@@ -1363,7 +1370,10 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
         <li style="margin-bottom: 8px;"><b>Meilensteine & Taktik (Land meistern)</b>: Wenn ein einzelnes Team alle 3 Level eines Landes richtig beantwortet, erhält es bei der letzten Frage dieses Landes <b>doppelte Punkte</b> und einen <b>goldenen Stern</b>. Wenn jedoch ein anderes Team ein Level dieses Landes "wegschnappt" oder falsch beantwortet, verfällt der Bonus für dieses Land.</li>
         <li style="margin-bottom: 8px;"><b>Turnier-Modus</b>: Die Hall of Fame speichert alle Sitzungsergebnisse für fortlaufende Duelle.</li>
     </ul>
-    <div style="text-align: center; margin-top: 30px;">
+    <div style="text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <button class="btn-main" style="border-color: rgba(255,255,255,0.15);" onclick="goBackFromRules()">
+          Zurück
+        </button>
         <button class="btn-main" onclick="showCategorySelect()">
           Weiter zur Kategorie
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1377,7 +1387,10 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
   <div class="card-box" style="text-align: left; max-width: 600px;">
     <h2 id="sp-instr-title" style="font-family: 'Space Grotesk', sans-serif; color: var(--accent); text-align: center; font-size: 2rem; margin-top: 0; font-weight: 700;">Regeln</h2>
     <div id="sp-instr-content" style="line-height: 1.8; color: var(--text-primary); opacity: 0.9; font-size: 0.95rem; margin-bottom: 25px;"></div>
-    <div style="text-align: center;">
+    <div style="text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <button class="btn-main" style="border-color: rgba(255,255,255,0.15);" onclick="goBackFromRules()">
+        Zurück
+      </button>
       <button class="btn-main" onclick="advanceFromSPInstructions()">
         Weiter
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1397,6 +1410,7 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
       <button class="btn-main" onclick="selectTimeAttackDuration(3)">⏱️ 3 Minuten</button>
       <button class="btn-main" onclick="selectTimeAttackDuration(4)">⏱️ 4 Minuten</button>
       <button class="btn-main" onclick="selectTimeAttackDuration(5)">⏱️ 5 Minuten</button>
+      <button class="btn-main" style="border-color: rgba(255,255,255,0.15); margin-top: 8px;" onclick="goBackFromTimeSelect()">Zurück</button>
     </div>
   </div>
 </div>
@@ -1444,6 +1458,9 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
         </div>
       </div>
     </div>
+    <button class="btn-main" style="margin-top:20px; border-color: rgba(255,255,255,0.15);" onclick="goBackFromCategory()">
+      Zurück
+    </button>
   </div>
 </div>
 
@@ -1477,6 +1494,9 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
     </div>
 
     <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <button class="btn-main" style="border-color: rgba(255,255,255,0.15);" onclick="goBackFromSetup()">
+          Zurück
+        </button>
         <button class="btn-main" style="border-color: var(--success); color: var(--success);" onclick="addTeamField()">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
           Team hinzufügen
@@ -3487,6 +3507,41 @@ function showCategorySelect() {
   sounds.playClick();
   document.getElementById('instr-screen').style.display='none'; 
   document.getElementById('category-screen').style.display='flex'; 
+}
+
+function goBackFromRules() {
+  sounds.playClick();
+  document.getElementById('instr-screen').style.display = 'none';
+  document.getElementById('sp-instr-screen').style.display = 'none';
+  document.getElementById('mode-screen').style.display = 'flex';
+}
+
+function goBackFromTimeSelect() {
+  sounds.playClick();
+  document.getElementById('time-select-screen').style.display = 'none';
+  document.getElementById('sp-instr-screen').style.display = 'flex';
+}
+
+function goBackFromCategory() {
+  sounds.playClick();
+  document.getElementById('category-screen').style.display = 'none';
+  if (gameMode === 'campaign') {
+    document.getElementById('instr-screen').style.display = 'flex';
+  } else {
+    document.getElementById('setup-screen').style.display = 'flex';
+  }
+}
+
+function goBackFromSetup() {
+  sounds.playClick();
+  document.getElementById('setup-screen').style.display = 'none';
+  if (gameMode === 'campaign') {
+    document.getElementById('category-screen').style.display = 'flex';
+  } else if (gameMode === 'timeattack') {
+    document.getElementById('time-select-screen').style.display = 'flex';
+  } else if (gameMode === 'suddendeath') {
+    document.getElementById('sp-instr-screen').style.display = 'flex';
+  }
 }
 
 function selectCategory(catNum) {
@@ -5538,11 +5593,11 @@ function getExplanation(qText, correctAnswerText) {
 const impressumText = `
     <h2 style="color: #fff; margin-top: 0;">Impressum</h2>
     <p><strong>Diensteanbieter & Medieninhaber:</strong><br>
-    [Thiemo Greger] & [Matthias Hackl]<br><br>
+    Thiemo Greger & Matthias Hackl<br><br>
     <strong>Erreichbar unter der Anschrift:</strong><br>
-    [BG/BRG Carnerigasse]<br>
-    [8010 Graz]<br>Österreich</p>
-    <p><strong>Kontakt:</strong><br>E-Mail: [thiemo.greger@carneri.at] oder [matthias.hackl@carneri.at]</p>
+    BG/BRG Carnerigasse<br>
+    8010 Graz<br>Österreich</p>
+    <p><strong>Kontakt:</strong><br>E-Mail: thiemo.greger@carneri.at oder matthias.hackl@carneri.at</p>
     <p><strong>Blattlinie:</strong><br>Diese Website ist ein rein privates, nicht-kommerzielles Hobbyprojekt. Sie dient ausschließlich der Unterhaltung und der Wissensvermittlung über die Europäische Union. Es werden keinerlei kommerzielle Interessen verfolgt.</p>
 `;
 
@@ -5616,6 +5671,4 @@ window.addEventListener("click", function(e) {
 </script>
 </body>
 </html>
-
-
 
